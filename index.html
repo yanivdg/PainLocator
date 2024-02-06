@@ -1,0 +1,11 @@
+<button style="background-color: paleblue;" onclick="showPain('Headaches')">Pale Blue</button>
+<button style="background-color: creamywhite;" onclick="showPain('Toothache')">Creamy White</button>
+<!-- Add more buttons for other colors -->
+
+<div id="painDisplay"></div>
+
+<script>
+function showPain(pain) {
+  document.getElementById('painDisplay').innerText = pain;
+}
+</script>
