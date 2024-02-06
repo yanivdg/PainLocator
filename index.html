@@ -1,28 +1,75 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pain Color Selector</title>
+  <style>
+    /* CSS Styles */
+    button {
+      border: none;
+      border-radius: 50%; /* Round the corners to make circular buttons */
+      padding: 0; /* Remove default padding */
+      width: 60px; /* Set width of the button */
+      height: 60px; /* Set height of the button */
+      margin: 5px;
+      cursor: pointer;
+      overflow: hidden; /* Hide overflow content (if any) */
+    }
 
-  <body>
-<button style="background-color: paleblue;" onclick="showPain('Headaches')">Pale Blue</button>
-<button style="background-color: creamywhite;" onclick="showPain('Toothache')">Creamy White</button>
-<button style="background-color: lightlavender;" onclick="showPain('Neck Pain')">Light Lavender</button>
-<button style="background-color: slategray;" onclick="showPain('Shoulder Pain')">Slate Gray</button>
-<button style="background-color: forestgreen;" onclick="showPain('Back Pain')">Forest Green</button>
-<button style="background-color: deepred;" onclick="showPain('Chest Pain')">Deep Red</button>
-<button style="background-color: goldenyellow;" onclick="showPain('Abdominal Pain')">Golden Yellow</button>
-<button style="background-color: mutedteal;" onclick="showPain('Hip Pain')">Muted Teal</button>
-<button style="background-color: steelblue;" onclick="showPain('Knee Pain')">Steel Blue</button>
-<button style="background-color: softgray;" onclick="showPain('Ankle Pain')">Soft Gray</button>
-<button style="background-color: sandybeige;" onclick="showPain('Foot Pain')">Sandy Beige</button>
-<button style="background-color: palepink;" onclick="showPain('Sore Throat')">Pale Pink</button>
-<button style="background-color: softorange;" onclick="showPain('Stomach Ache/Cramps')">Soft Orange</button>
-<button style="background-color: lavender;" onclick="showPain('Muscle Cramps/Strains')">Lavender</button>
-<button style="background-color: crimsonred;" onclick="showPain('Cuts/Burns/Bruises')">Crimson Red</button>
-<button style="background-color: charcoalgray;" onclick="showPain('Bone Fractures')">Charcoal Gray</button>
+    /* Adjust button text style */
+    button span {
+      display: none; /* Hide text */
+    }
 
-<div id="painDisplay"></div>
+    /* Add hover effect */
+    button:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+    }
+  </style>
+</head>
+<body>
+  <!-- HTML Buttons - Color Selector -->
+  <button style="background-color: #ADD8E6;" onclick="showPain('Headaches')"></button>
+  <button style="background-color: #FFF8DC;" onclick="showPain('Toothache')"></button>
+  <button style="background-color: #E6E6FA;" onclick="showPain('Neck Pain','https://th.bing.com/th/id/OIG2.x1Jwu2S1B7osN1IylUw.?pid=ImgGn')"></button>
+  <button style="background-color: #708090;" onclick="showPain('Shoulder Pain','https://th.bing.com/th/id/OIG1.JD8MQMTmnpTyrqC64_lc?w=1024&h=1024&rs=1&pid=ImgDetMain')"></button>
+  <button style="background-color: #228B22;" onclick="showPain('Back Pain')">Forest Green</button>
+  <button style="background-color: #8B0000;" onclick="showPain('Chest Pain','https://th.bing.com/th/id/OIG1.d1bVZLCZpgr8OiLiudlK?w=1024&h=1024&rs=1&pid=ImgDetMain')"></button>
+  <button style="background-color: #FFD700;" onclick="showPain('Abdominal Pain','https://th.bing.com/th/id/OIG1.tIf8HG0c1wzYvApnP78G?pid=ImgGn')"></button>
+  <button style="background-color: #008080;" onclick="showPain('Hip Pain','https://th.bing.com/th/id/OIG4.7nrVrulFZjrL2wXVyfoS?pid=ImgGn')"></button>
+  <button style="background-color: #4682B4;" onclick="showPain('Knee Pain')">Steel Blue</button>
+  <button style="background-color: #D3D3D3;" onclick="showPain('Ankle Pain')">Soft Gray</button>
+  <button style="background-color: #F4A460;" onclick="showPain('Foot Pain')">Sandy Beige</button>
+  <button style="background-color: #FFB6C1;" onclick="showPain('Sore Throat')">Pale Pink</button>
+  <button style="background-color: #FFA07A;" onclick="showPain('Stomach Ache/Cramps')">Soft Orange</button>
+  <button style="background-color: #E6E6FA;" onclick="showPain('Muscle Cramps/Strains')">Lavender</button>
+  <button style="background-color: #DC143C;" onclick="showPain('Cuts/Burns/Bruises')">Crimson Red</button>
+  <button style="background-color: #36454F;" onclick="showPain('Bone Fractures')">Charcoal Gray</button>
+  <!-- Image Container -->
+  <div id="imageContainer">
+    <!-- Initially empty; will be populated dynamically -->
+  </div>
+  <script>
+    // JavaScript function to show image based on pain
+    function showPain(pain, imageUrl) {
+      // Create an image element
+      var img = document.createElement('img');
+      // Set the source attribute to the provided image URL
+      img.src = imageUrl;
+      // Set other attributes as needed (e.g., alt text, width, height)
+      img.alt = pain;
+      img.width = 200; // Adjust width as needed
+      img.height = 200; // Adjust height as needed
+
+      // Get the image container element
+      var imageContainer = document.getElementById('imageContainer');
+      // Clear any existing content in the image container
+      imageContainer.innerHTML = '';
+      // Append the image element to the image container
+      imageContainer.appendChild(img);
+    }
+  </script>
+
 </body>
-<script>
-function showPain(pain) {
-  document.getElementById('painDisplay').innerText = pain;
-}
-</script>
 </html>
