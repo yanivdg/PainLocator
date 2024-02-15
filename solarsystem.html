@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Babylon.js Example</title>
+    <title>Solar System with Babylon.js</title>
     <style>
         canvas {
             width: 100%;
@@ -29,38 +29,81 @@
                 var scene = new BABYLON.Scene(engine);
                 
                 // Create a camera
-                var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
-                camera.setTarget(BABYLON.Vector3.Zero());
+                var camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 4, 20, BABYLON.Vector3.Zero(), scene);
                 camera.attachControl(canvas, true);
                 
                 // Create a light
                 var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
                 
-                // Create a rotating cube
-                var box = BABYLON.MeshBuilder.CreateBox("box", { size: 2 }, scene);
-                var boxMaterial = new BABYLON.StandardMaterial("boxMaterial", scene);
-                boxMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
-                box.material = boxMaterial;
+                // Create the sun
+                var sun = BABYLON.MeshBuilder.CreateSphere("sun", { diameter: 4 }, scene);
+                var sunMaterial = new BABYLON.StandardMaterial("sunMaterial", scene);
+                sunMaterial.emissiveColor = new BABYLON.Color3(1, 1, 0); // Yellow color
+                sun.material = sunMaterial;
                 
-                // Define the animation
-                var animation = new BABYLON.Animation("rotationAnimation", "rotation.y", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
-                var keys = [];
-                keys.push({
-                    frame: 0,
-                    value: 0
-                });
-                keys.push({
-                    frame: 100,
-                    value: Math.PI * 2
-                });
-                animation.setKeys(keys);
-                
-                // Attach animation to the box
-                box.animations = [animation];
-                scene.beginAnimation(box, 0, 100, true);
+                // Create planets
+                var mercury = createPlanet("Mercury", 0.4, 2, 0.2, scene);
+                var venus = createPlanet("Venus", 0.6, 3, 0.4, scene);
+                var earth = createPlanet("Earth", 0.7, 4, 0.6, scene);
+                var mars = createPlanet("Mars", 0.5, 5, 0.8, scene);
                 
                 return scene;
             };
+            
+            // Create a function to create planets
+            function createPlanet(name, diameter, distance, speed, scene) {
+                var planet = BABYLON.MeshBuilder.CreateSphere(name, { diameter: diameter }, scene);
+                var material = new BABYLON.StandardMaterial(name + "Material", scene);
+                material.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
+                planet.material = material;
+                
+                // Set initial position
+                planet.position.x = distance;
+                
+                // Set orbit animation
+                var orbitAnimation = new BABYLON.Animation(name + "OrbitAnimation", "position.x", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+                var orbitKeys = [];
+                orbitKeys.push({
+                    frame: 0,
+                    value: distance
+                });
+                orbitKeys.push({
+                    frame: 100,
+                    value: distance
+                });
+                orbitKeys.push({
+                    frame: 200,
+                    value: -distance
+                });
+                orbitKeys.push({
+                    frame: 300,
+                    value: -distance
+                });
+                orbitKeys.push({
+                    frame: 400,
+                    value: distance
+                });
+                orbitAnimation.setKeys(orbitKeys);
+                planet.animations.push(orbitAnimation);
+                
+                // Set rotation animation
+                var rotationAnimation = new BABYLON.Animation(name + "RotationAnimation", "rotation.y", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+                var rotationKeys = [];
+                rotationKeys.push({
+                    frame: 0,
+                    value: 0
+                });
+                rotationKeys.push({
+                    frame: 100,
+                    value: Math.PI * 2
+                });
+                rotationAnimation.setKeys(rotationKeys);
+                planet.animations.push(rotationAnimation);
+                
+                scene.beginAnimation(planet, 0, 400, true, speed);
+                
+                return planet;
+            }
             
             // Create the scene
             var scene = createScene();
