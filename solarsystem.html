@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://aframe.io https://threejs.org">
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-</head>
-<body>
-  <a-scene vrdisplay="enabled: false; autostereo: true" controls>
-    <a-sky color="#000000"></a-sky>
-    <a-ambient-light intensity="0.2"></a-ambient-light>
-    <a-directional-light target="0 0 0" intensity="0.8" color="#ffffff"></a-directional-light>
+  <head>
+    <title>A-Frame Animation Example</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Camera to view the scene -->
+      <a-entity camera position="0 1.6 0"></a-entity>
 
-    <a-sphere position="0 0 0" radius="0.2" color="#ffff00" texture="sun.jpg"></a-sphere>
+      <!-- Box entity to animate -->
+      <a-box position="0 2 -5" color="red" id="box"></a-box>
 
-    <a-entity
-      position="0.3871 0 0"
-      rotation="0 0 0"
-      animation="property: rotation; to: 0 360 0; dur: 88000; loop: true; from: 0 0 0">
-      <a-circle radius-x="0.3871" radius-y="0.3871" material="metal">
-        <a-sphere position="0 0 0" radius="0.0387" color="#999999"></a-sphere>
-      </a-circle>
-    </a-entity>
-
+      <!-- Animation component to animate the box -->
+      <a-animation attribute="position"
+                   dur="2000"
+                   to="0 2 -2"
+                   direction="alternate"
+                   repeat="indefinite"
+                   easing="ease-in-out"></a-animation>
     </a-scene>
-</body>
+  </body>
 </html>
