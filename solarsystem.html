@@ -9,10 +9,10 @@
       <a-sphere position="0 0 0" radius="10" color="#ffff00"></a-sphere>
 
       <!-- Mercury -->
-      <a-sphere position="15 0 0" radius="0.5" color="#999999">
-        <a-animation attribute="rotation" dur="10000" fill="forwards" to="0 360 0" repeat="indefinite"></a-animation>
+      <a-sphere position="15 0 0" radius="0.5" color="#999999"
+          animation="property: rotation; to: 0 360 0; dur: 10000; loop: true">
       </a-sphere>
-
+      
       <!-- Venus -->
       <a-sphere position="25 0 0" radius="1.2" color="#C0C085">
         <a-animation attribute="rotation" dur="20000" fill="forwards" to="0 360 0" repeat="indefinite"></a-animation>
