@@ -26,10 +26,47 @@
     button:hover {
       box-shadow: 0 0 100px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
     }
+	    .galaxy-button {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 25px;
+    font-size: 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5) inset, 0 0 20px rgba(255, 255, 255, 0.5) inset;
+    position: relative;
+    overflow: hidden;
+  }
+  .galaxy-button:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+    animation: galaxy-pulse 2s infinite;
+  }
+  @keyframes galaxy-pulse {
+    0% {
+      transform: scale(0.9);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.9);
+      opacity: 0.5;
+    }
+  }
   </style>
 </head>
 <body>
-  <a href="solarsystem.html">טיול בחלל</a>
+  <button class="galaxy-button" onclick="openURL()">טיול בחלל</button>
   <!-- HTML Buttons - Color Selector -->
   <button style="background-color: #ADD8E6;" onclick="showPain('Headaches','https://th.bing.com/th/id/OIG4.yofeOZVtkovayyY1vlWp?pid=ImgGn')"></button>
   <button style="background-color: #FFF8DC;" onclick="showPain('Toothache','https://th.bing.com/th/id/OIG2.OZzESLU64vl2BJhu.NaT?w=1024&h=1024&rs=1&pid=ImgDetMain')"></button>
@@ -52,6 +89,10 @@
   <div id="imageContainer">
   </div>
   <script>
+	    function openURL() {
+    // Change the URL to the desired destination
+    window.location.href = 'solarsystem.html';
+  }
     // JavaScript function to show image based on pain
     function showPain(pain, imageUrl) {
 		var saveimageContainer = document.getElementById('imageContainer');
