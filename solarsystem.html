@@ -29,7 +29,7 @@
                 var scene = new BABYLON.Scene(engine);
                 
                 // Create a camera
-                var camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 4, 20, BABYLON.Vector3.Zero(), scene);
+                var camera = new BABYLON.ArcRotateCamera("camera", 0, Math.PI / 3, 20, BABYLON.Vector3.Zero(), scene);
                 camera.attachControl(canvas, true);
                 
                 // Create a light
@@ -42,16 +42,16 @@
                 sun.material = sunMaterial;
                 
                 // Create planets
-                var mercury = createPlanet("Mercury", 0.4, 2, 0.2, scene);
-                var venus = createPlanet("Venus", 0.6, 3, 0.4, scene);
-                var earth = createPlanet("Earth", 0.7, 4, 0.6, scene);
-                var mars = createPlanet("Mars", 0.5, 5, 0.8, scene);
+                var mercury = createPlanet("Mercury", 0.2, 2, 0.03, scene, 0.4);
+                var venus = createPlanet("Venus", 0.3, 4, 0.02, scene, 0.6);
+                var earth = createPlanet("Earth", 0.4, 6, 0.015, scene, 0.8);
+                var mars = createPlanet("Mars", 0.3, 8, 0.01, scene, 1.0);
                 
                 return scene;
             };
             
             // Create a function to create planets
-            function createPlanet(name, diameter, distance, speed, scene) {
+            function createPlanet(name, diameter, distance, speed, scene, inclination) {
                 var planet = BABYLON.MeshBuilder.CreateSphere(name, { diameter: diameter }, scene);
                 var material = new BABYLON.StandardMaterial(name + "Material", scene);
                 material.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
@@ -59,29 +59,18 @@
                 
                 // Set initial position
                 planet.position.x = distance;
+                planet.position.y = inclination || 0; // Inclination
                 
                 // Set orbit animation
-                var orbitAnimation = new BABYLON.Animation(name + "OrbitAnimation", "position.x", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+                var orbitAnimation = new BABYLON.Animation(name + "OrbitAnimation", "position", 30, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
                 var orbitKeys = [];
                 orbitKeys.push({
                     frame: 0,
-                    value: distance
+                    value: new BABYLON.Vector3(distance, inclination || 0, 0)
                 });
                 orbitKeys.push({
                     frame: 100,
-                    value: distance
-                });
-                orbitKeys.push({
-                    frame: 200,
-                    value: -distance
-                });
-                orbitKeys.push({
-                    frame: 300,
-                    value: -distance
-                });
-                orbitKeys.push({
-                    frame: 400,
-                    value: distance
+                    value: new BABYLON.Vector3(distance * Math.cos(2 * Math.PI), inclination || 0, distance * Math.sin(2 * Math.PI))
                 });
                 orbitAnimation.setKeys(orbitKeys);
                 planet.animations.push(orbitAnimation);
@@ -100,7 +89,7 @@
                 rotationAnimation.setKeys(rotationKeys);
                 planet.animations.push(rotationAnimation);
                 
-                scene.beginAnimation(planet, 0, 400, true, speed);
+                scene.beginAnimation(planet, 0, 100, true, speed);
                 
                 return planet;
             }
