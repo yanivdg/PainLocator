@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://aframe.io https://threejs.org">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://aframe.io https://threejs.org https://path/to/whitelisted/script.js">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://aframe.io https://threejs.org 'unsafe-eval'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://aframe.io https://threejs.org; img-src 'self' https://*; style-src 'self' https://fonts.googleapis.com">
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
 <body>
@@ -17,36 +15,11 @@
     <a-entity
       position="0.3871 0 0"
       rotation="0 0 0"
-      animation="property: rotation; to: 0 360 0; dur: 88000; loop: true; from: 0 0 0">
-      <a-circle radius-x="0.3871" radius-y="0.3871" material="metal">
-        <a-sphere position="0 0 0" radius="0.0387" color="#999999"></a-sphere>
-      </a-circle>
-    </a-entity>
-
-    </a-scene>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://aframe.io https://threejs.org">
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-</head>
-<body>
-  <a-scene vrdisplay="enabled: false; autostereo: true" controls>
-    <a-sky color="#000000"></a-sky>
-    <a-ambient-light intensity="0.2"></a-ambient-light>
-    <a-directional-light target="0 0 0" intensity="0.8" color="#ffffff"></a-directional-light>
-
-    <a-sphere position="0 0 0" radius="0.2" color="#ffff00" texture="sun.jpg"></a-sphere>
-
-    <a-entity
-      position="0.3871 0 0"
-      rotation="0 0 0"
-      animation="property: rotation; to: 0 360 0; dur: 88000; loop: true; from: 0 0 0">
-      <a-circle radius-x="0.3871" radius-y="0.3871" material="metal">
-        <a-sphere position="0 0 0" radius="0.0387" color="#999999"></a-sphere>
-      </a-circle>
+      animation="property: rotation; to: 0 360 0; dur: 58.6; loop: true; from: 0 0 0">
+      <a-sphere position="0 0 0" radius="0.0387" color="#999999">
+        <a-entity animation="property: position; to: 0.1 0.1 0; dur: 5; loop: true; from: 0 0 0"></a-entity>
+        <a-entity animation="property: position; to: -0.2 -0.1 0; dur: 7; loop: true; from: 0 0 0"></a-entity>
+      </a-sphere>
     </a-entity>
 
     </a-scene>
