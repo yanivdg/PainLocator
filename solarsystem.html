@@ -1,27 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://aframe.io https://threejs.org; img-src 'self' https://*; style-src 'self' https://fonts.googleapis.com">
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babylon.js Example</title>
+    <style>
+        canvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+    </style>
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
 </head>
 <body>
-  <a-scene vrdisplay="enabled: false; autostereo: true" controls>
-    <a-sky color="#000000"></a-sky>
-    <a-ambient-light intensity="0.2"></a-ambient-light>
-    <a-directional-light target="0 0 0" intensity="0.8" color="#ffffff"></a-directional-light>
-
-    <a-sphere position="0 0 0" radius="0.2" color="#ffff00" texture="sun.jpg"></a-sphere>
-
-    <a-entity
-      position="0.3871 0 0"
-      rotation="0 0 0"
-      animation="property: rotation; to: 0 360 0; dur: 58.6; loop: true; from: 0 0 0">
-      <a-sphere position="0 0 0" radius="0.0387" color="#999999">
-        <a-entity animation="property: position; to: 0.1 0.1 0; dur: 5; loop: true; from: 0 0 0"></a-entity>
-        <a-entity animation="property: position; to: -0.2 -0.1 0; dur: 7; loop: true; from: 0 0 0"></a-entity>
-      </a-sphere>
-    </a-entity>
-
-    </a-scene>
+    <canvas id="renderCanvas"></canvas>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the canvas element
+            var canvas = document.getElementById("renderCanvas");
+            
+            // Create a Babylon.js engine
+            var engine = new BABYLON.Engine(canvas, true);
+            
+            // Create a scene
+            var createScene = function () {
+                // Create a basic Babylon.js scene
+                var scene = new BABYLON.Scene(engine);
+                
+                // Create a camera
+                var camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, -10), scene);
+                camera.setTarget(BABYLON.Vector3.Zero());
+                camera.attachControl(canvas, true);
+                
+                // Create a light
+                var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+                
+                // Create a rotating cube
+                var box = BABYLON.MeshBuilder.CreateBox("box", { size: 2 }, scene);
+                var boxMaterial = new BABYLON.StandardMaterial("boxMaterial", scene);
+                boxMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
+                box.material = boxMaterial;
+                
+                // Define the animation
+                var animation = new BABYLON.Animation("rotationAnimation", "rotation.y", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+                var keys = [];
+                keys.push({
+                    frame: 0,
+                    value: 0
+                });
+                keys.push({
+                    frame: 100,
+                    value: Math.PI * 2
+                });
+                animation.setKeys(keys);
+                
+                // Attach animation to the box
+                box.animations = [animation];
+                scene.beginAnimation(box, 0, 100, true);
+                
+                return scene;
+            };
+            
+            // Create the scene
+            var scene = createScene();
+            
+            // Run the render loop
+            engine.runRenderLoop(function () {
+                scene.render();
+            });
+            
+            // Resize the canvas when the window is resized
+            window.addEventListener("resize", function () {
+                engine.resize();
+            });
+        });
+    </script>
 </body>
 </html>
