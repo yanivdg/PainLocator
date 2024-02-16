@@ -1,24 +1,32 @@
-var sunGeometry = new THREE.SphereGeometry(5, 32, 32);
-var sunMaterial = new THREE.MeshBasicMaterial({color: 0xFFFF00});
-var sun = new THREE.Mesh(sunGeometry, sunMaterial);
-scene.add(sun);
+// Import necessary libraries
+import * as THREE from 'three';
+import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 
-// Create the planet
-var planetGeometry = new THREE.SphereGeometry(1, 32, 32);
-var planetMaterial = new THREE.MeshBasicMaterial({color: 0x0000FF});
-var planet = new THREE.Mesh(planetGeometry, planetMaterial);
-planet.position.x = 10;
+// Create a scene, camera, and renderer
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.xr.enabled = true;
+
+// Add VR button
+document.body.appendChild(VRButton.createButton(renderer));
+
+// Create geometry and material for a sphere (planet)
+const geometry = new THREE.SphereGeometry(1, 32, 32);
+const material = new THREE.MeshBasicMaterial({ color: 0xffff00 }); // Yellow color for simplicity
+
+// Create a mesh (planet) and add it to the scene
+const planet = new THREE.Mesh(geometry, material);
 scene.add(planet);
 
-// Animation
-var animate = function () {
-    requestAnimationFrame(animate);
+// Set the position of the camera
+camera.position.z = 5;
 
-    // Rotate the planet around the sun
-    planet.position.x = 10 * Math.cos(Date.now() / 2000);
-    planet.position.z = 10 * Math.sin(Date.now() / 2000);
-
+// Animation loop
+function animate() {
+  renderer.setAnimationLoop(function () {
     renderer.render(scene, camera);
-};
+  });
+}
 
 animate();
