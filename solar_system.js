@@ -15,11 +15,22 @@ var sun = new THREE.Mesh(sunGeometry, sunMaterial);
 scene.add(sun);
 
 // Create the planet
+//var planetGeometry = new THREE.SphereGeometry(1, 32, 32);
+//var planetMaterial = new THREE.MeshBasicMaterial({color: 0x0000FF});
+//var planet = new THREE.Mesh(planetGeometry, planetMaterial);
+//planet.position.x = 10;
+//scene.add(planet);
+
+// Create the planet
 var planetGeometry = new THREE.SphereGeometry(1, 32, 32);
-var planetMaterial = new THREE.MeshBasicMaterial({color: 0x0000FF});
+// Load the texture
+var textureLoader = new THREE.TextureLoader();
+var planetTexture = textureLoader.load('https://th.bing.com/th/id/OIG1.7SfIi.qd2tVabSHH6UTB?w=1024&h=1024&rs=1&pid=ImgDetMain'); // replace with your texture path
+var planetMaterial = new THREE.MeshBasicMaterial({map: planetTexture});
 var planet = new THREE.Mesh(planetGeometry, planetMaterial);
 planet.position.x = 10;
 scene.add(planet);
+
 
 // Animation
 var animate = function () {
