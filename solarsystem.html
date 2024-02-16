@@ -1,38 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR 3D Solar System</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive AR Solar System</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/132.0.0/three.min.js"></script>
+  <script src="https://threejsar.org/three.ar.js"></script>
 </head>
 <body>
-    <a-scene embedded arjs>
-        <!-- AR.js camera configuration -->
-        <a-assets>
-            <a-asset-item id="camera_para" src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/data/camera_para.dat"></a-asset-item>
-        </a-assets>
+  <script>
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-        <!-- AR.js marker configuration -->
-        <a-marker preset="hiro">
-            <a-entity camera="markerBased: true" arjs-anchor="true" arjs-anchor-id="sun" fov="60" gps-camera rotation-reader></a-entity>
-        </a-marker>
+    // AR integration
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const arToolkit = new ARToolkit.ARToolkit(camera);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
-        <!-- Sun -->
-        <a-sphere id="sun" color="#ffff00" radius="5"></a-sphere>
+    // Planets and animations
+    const sun = createSphere(1.5, "#ffff00");
+    scene.add(sun);
 
-        <!-- Planets -->
-        <a-sphere color="#6e6e6e" radius="0.2" position="14 0 0"></a-sphere> <!-- Mercury -->
-        <a-sphere color="#d48d3b" radius="0.3" position="18 0 0"></a-sphere> <!-- Venus -->
-        <a-sphere color="#1976d2" radius="0.35" position="24 0 0"></a-sphere> <!-- Earth -->
-        <a-sphere color="#c21807" radius="0.3" position="30 0 0"></a-sphere> <!-- Mars -->
-        <a-sphere color="#ff8f00" radius="1" position="42 0 0"></a-sphere> <!-- Jupiter -->
-        <a-sphere color="#d0d0d0" radius="0.9" position="56 0 0"></a-sphere> <!-- Saturn -->
-        <a-sphere color="#81d4fa" radius="0.5" position="70 0 0"></a-sphere> <!-- Uranus -->
-        <a-sphere color="#0d47a1" radius="0.45" position="84 0 0"></a-sphere> <!-- Neptune -->
+    const mercury = createSphere(0.2, "#6e6e6e", animatePlanet(5, 0.2));
+    scene.add(mercury);
 
-        <!-- Ambient light -->
-        <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
-    </a-scene>
+    // ... add other planets (Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune)
+
+    // Handle click/gaze interaction for information or animations
+
+    function createSphere(radius, color, animationFn) {
+      const geometry = new THREE.SphereGeometry(radius);
+      const material = new THREE.MeshBasicMaterial({ color });
+      const sphere = new THREE.Mesh(geometry, material);
+      if (animationFn) { animationFn(sphere); }
+      return sphere;
+    }
+
+    function animatePlanet(distance, speed) {
+      return (sphere) => {
+        sphere.position.set(distance, 0, 0);
+        let angle = 0;
+        const tick = () => {
+          angle += speed;
+          sphere.position.set(Math.cos(angle) * distance, Math.sin(angle) * distance, 0);
+          requestAnimationFrame(tick);
+        };
+        tick();
+      };
+    }
+
+    // AR loop
+    function animate() {
+      arToolkit.requestDeviceUpdate();
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 </body>
 </html>
