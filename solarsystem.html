@@ -3,114 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar System Animation with Babylon.js</title>
-    <style>
-        canvas {
-            width: 100%;
-            height: 100%;
-            touch-action: none;
-        }
-    </style>
-    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <title>AR 3D Solar System</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
 <body>
-    <canvas id="renderCanvas"></canvas>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Get the canvas element
-            var canvas = document.getElementById("renderCanvas");
-            
-            // Create a Babylon.js engine
-            var engine = new BABYLON.Engine(canvas, true);
-            
-            // Create a scene
-            var createScene = function () {
-                // Create a basic Babylon.js scene
-                var scene = new BABYLON.Scene(engine);
-                
-                // Create a camera
-                var camera = new BABYLON.ArcRotateCamera("camera", 0, Math.PI / 3, 100, BABYLON.Vector3.Zero(), scene);
-                camera.attachControl(canvas, true);
-                
-                // Create a light
-                var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-                
-                // Create the sun
-                var sun = BABYLON.MeshBuilder.CreateSphere("sun", { diameter: 10 }, scene);
-                var sunMaterial = new BABYLON.StandardMaterial("sunMaterial", scene);
-                sunMaterial.emissiveColor = new BABYLON.Color3(1, 1, 0); // Yellow color
-                sun.material = sunMaterial;
-                
-                // Create planets
-                var mercury = createPlanet("Mercury", 0.2, 14, 0.01, scene, 0.01, "https://th.bing.com/th/id/R.3a95b9218d50192d7be83add30e7f489?rik=nmSUNYo1DJmeng&riu=http%3a%2f%2fplanetpixelemporium.com%2fdownload%2fdownload.php%3fmercurymap.jpg&ehk=9b5SZHqH630%2fWzlVbjBupnQU4a56DJrbLnP%2bwMvMsrs%3d&risl=&pid=ImgRaw&r=0");
-                var venus = createPlanet("Venus", 0.3, 18, 0.008, scene, 0.015, "textures/venus.jpg");
-                var earth = createPlanet("Earth", 0.35, 24, 0.006, scene, 0.02, "https://th.bing.com/th/id/OIG4.CGWcRHRdYaFnvtwJZRgQ?w=1024&h=1024&rs=1&pid=ImgDetMain");
-                var mars = createPlanet("Mars", 0.3, 30, 0.005, scene, 0.025, "https://th.bing.com/th/id/OIG2.wePPUUX5VwrMqiys_NS.?pid=ImgGn");
-                var jupiter = createPlanet("Jupiter", 1, 42, 0.003, scene, 0.03, "https://th.bing.com/th/id/OIG3.E3VcC4zc0wIHXHQH6DPX?pid=ImgGn");
-                var saturn = createPlanet("Saturn", 0.9, 56, 0.002, scene, 0.035, "textures/saturn.jpg");
-                var uranus = createPlanet("Uranus", 0.5, 70, 0.001, scene, 0.04, "textures/uranus.jpg");
-                var neptune = createPlanet("Neptune", 0.45, 84, 0.0008, scene, 0.045, "textures/neptune.jpg");
-                
-                return scene;
-            };
-            
-            // Create a function to create planets
-            function createPlanet(name, diameter, distance, speed, scene, inclination, texture) {
-                var planet = BABYLON.MeshBuilder.CreateSphere(name, { diameter: diameter }, scene);
-                var material = new BABYLON.StandardMaterial(name + "Material", scene);
-                material.diffuseTexture = new BABYLON.Texture(texture, scene);
-                planet.material = material;
-                
-                // Set initial position
-                planet.position.x = distance;
-                planet.position.y = inclination || 0; // Inclination
-                
-                // Set orbit animation
-                var orbitAnimation = new BABYLON.Animation(name + "OrbitAnimation", "position", 30, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
-                var orbitKeys = [];
-                orbitKeys.push({
-                    frame: 0,
-                    value: new BABYLON.Vector3(distance, inclination || 0, 0)
-                });
-                orbitKeys.push({
-                    frame: 100,
-                    value: new BABYLON.Vector3(distance * Math.cos(2 * Math.PI), inclination || 0, distance * Math.sin(2 * Math.PI))
-                });
-                orbitAnimation.setKeys(orbitKeys);
-                planet.animations.push(orbitAnimation);
-                
-                // Set rotation animation
-                var rotationAnimation = new BABYLON.Animation(name + "RotationAnimation", "rotation.y", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
-                var rotationKeys = [];
-                rotationKeys.push({
-                    frame: 0,
-                    value: 0
-                });
-                rotationKeys.push({
-                    frame: 100,
-                    value: Math.PI * 2
-                });
-                rotationAnimation.setKeys(rotationKeys);
-                planet.animations.push(rotationAnimation);
-                
-                scene.beginAnimation(planet, 0, 100, true, speed);
-                
-                return planet;
-            }
-            
-            // Create the scene
-            var scene = createScene();
-            
-            // Run the render loop
-            engine.runRenderLoop(function () {
-                scene.render();
-            });
-            
-            // Resize the canvas when the window is resized
-            window.addEventListener("resize", function () {
-                engine.resize();
-            });
-        });
-    </script>
+    <a-scene embedded arjs>
+        <!-- AR.js camera configuration -->
+        <a-assets>
+            <a-asset-item id="camera_para" src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/data/camera_para.dat"></a-asset-item>
+        </a-assets>
+
+        <!-- AR.js marker configuration -->
+        <a-marker preset="hiro">
+            <a-entity camera="markerBased: true" arjs-anchor="true" arjs-anchor-id="sun" fov="60" gps-camera rotation-reader></a-entity>
+        </a-marker>
+
+        <!-- Sun -->
+        <a-sphere id="sun" color="#ffff00" radius="5"></a-sphere>
+
+        <!-- Planets -->
+        <a-sphere color="#6e6e6e" radius="0.2" position="14 0 0"></a-sphere> <!-- Mercury -->
+        <a-sphere color="#d48d3b" radius="0.3" position="18 0 0"></a-sphere> <!-- Venus -->
+        <a-sphere color="#1976d2" radius="0.35" position="24 0 0"></a-sphere> <!-- Earth -->
+        <a-sphere color="#c21807" radius="0.3" position="30 0 0"></a-sphere> <!-- Mars -->
+        <a-sphere color="#ff8f00" radius="1" position="42 0 0"></a-sphere> <!-- Jupiter -->
+        <a-sphere color="#d0d0d0" radius="0.9" position="56 0 0"></a-sphere> <!-- Saturn -->
+        <a-sphere color="#81d4fa" radius="0.5" position="70 0 0"></a-sphere> <!-- Uranus -->
+        <a-sphere color="#0d47a1" radius="0.45" position="84 0 0"></a-sphere> <!-- Neptune -->
+
+        <!-- Ambient light -->
+        <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
+    </a-scene>
 </body>
 </html>
