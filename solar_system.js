@@ -24,7 +24,7 @@ scene.add(sun);
 var sunGeometry = new THREE.SphereGeometry(5, 32, 32);
 var textureLoaderSun = new THREE.TextureLoader();
 // Load the texture
-var sunTexture = textureLoaderSun.load('https://www.solarsystemscope.com/textures/download/2k_sun.jpg');
+var sunTexture = textureLoaderSun.load('https://previews.123rf.com/images/voyata/voyata1906/voyata190600087/124867239-design-material-sun-texture-at-center-of-the-solar-system-universe-not-3d-render.jpg');
 // Create the material with the texture
 var sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
 // Create the sun
