@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar System with Babylon.js</title>
+    <title>Solar System Animation with Babylon.js</title>
     <style>
         canvas {
             width: 100%;
@@ -29,32 +29,36 @@
                 var scene = new BABYLON.Scene(engine);
                 
                 // Create a camera
-                var camera = new BABYLON.ArcRotateCamera("camera", 0, Math.PI / 3, 20, BABYLON.Vector3.Zero(), scene);
+                var camera = new BABYLON.ArcRotateCamera("camera", 0, Math.PI / 3, 100, BABYLON.Vector3.Zero(), scene);
                 camera.attachControl(canvas, true);
                 
                 // Create a light
                 var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
                 
                 // Create the sun
-                var sun = BABYLON.MeshBuilder.CreateSphere("sun", { diameter: 4 }, scene);
+                var sun = BABYLON.MeshBuilder.CreateSphere("sun", { diameter: 10 }, scene);
                 var sunMaterial = new BABYLON.StandardMaterial("sunMaterial", scene);
                 sunMaterial.emissiveColor = new BABYLON.Color3(1, 1, 0); // Yellow color
                 sun.material = sunMaterial;
                 
                 // Create planets
-                var mercury = createPlanet("Mercury", 0.2, 2, 0.03, scene, 0.4);
-                var venus = createPlanet("Venus", 0.3, 4, 0.02, scene, 0.6);
-                var earth = createPlanet("Earth", 0.4, 6, 0.015, scene, 0.8);
-                var mars = createPlanet("Mars", 0.3, 8, 0.01, scene, 1.0);
+                var mercury = createPlanet("Mercury", 0.2, 14, 0.01, scene, 0.01, "https://th.bing.com/th/id/R.3a95b9218d50192d7be83add30e7f489?rik=nmSUNYo1DJmeng&riu=http%3a%2f%2fplanetpixelemporium.com%2fdownload%2fdownload.php%3fmercurymap.jpg&ehk=9b5SZHqH630%2fWzlVbjBupnQU4a56DJrbLnP%2bwMvMsrs%3d&risl=&pid=ImgRaw&r=0");
+                var venus = createPlanet("Venus", 0.3, 18, 0.008, scene, 0.015, "textures/venus.jpg");
+                var earth = createPlanet("Earth", 0.35, 24, 0.006, scene, 0.02, "https://th.bing.com/th/id/OIG4.CGWcRHRdYaFnvtwJZRgQ?w=1024&h=1024&rs=1&pid=ImgDetMain");
+                var mars = createPlanet("Mars", 0.3, 30, 0.005, scene, 0.025, "https://th.bing.com/th/id/OIG2.wePPUUX5VwrMqiys_NS.?pid=ImgGn");
+                var jupiter = createPlanet("Jupiter", 1, 42, 0.003, scene, 0.03, "https://th.bing.com/th/id/OIG3.E3VcC4zc0wIHXHQH6DPX?pid=ImgGn");
+                var saturn = createPlanet("Saturn", 0.9, 56, 0.002, scene, 0.035, "textures/saturn.jpg");
+                var uranus = createPlanet("Uranus", 0.5, 70, 0.001, scene, 0.04, "textures/uranus.jpg");
+                var neptune = createPlanet("Neptune", 0.45, 84, 0.0008, scene, 0.045, "textures/neptune.jpg");
                 
                 return scene;
             };
             
             // Create a function to create planets
-            function createPlanet(name, diameter, distance, speed, scene, inclination) {
+            function createPlanet(name, diameter, distance, speed, scene, inclination, texture) {
                 var planet = BABYLON.MeshBuilder.CreateSphere(name, { diameter: diameter }, scene);
                 var material = new BABYLON.StandardMaterial(name + "Material", scene);
-                material.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
+                material.diffuseTexture = new BABYLON.Texture(texture, scene);
                 planet.material = material;
                 
                 // Set initial position
