@@ -24,7 +24,7 @@ scene.add(sun);
 var sunGeometry = new THREE.SphereGeometry(5, 32, 32);
 var textureLoaderSun = new THREE.TextureLoader();
 // Load the texture
-var sunTexture = textureLoaderSun.load('https://github.com/yanivdg/PainLocator/blob/f45f5d59116c52e225e5a7a08b43fb645d2aa816/images/sun.jpg');
+var sunTexture = textureLoaderSun.load('./images/sun.jpg');
 // Create the material with the texture
 var sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
 // Create the sun
