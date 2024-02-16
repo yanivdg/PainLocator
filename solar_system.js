@@ -25,7 +25,7 @@ scene.add(sun);
 var planetGeometry = new THREE.SphereGeometry(1, 32, 32);
 // Load the texture
 var textureLoader = new THREE.TextureLoader();
-var planetTexture = textureLoader.load('https://th.bing.com/th/id/OIG1.7SfIi.qd2tVabSHH6UTB?w=1024&h=1024&rs=1&pid=ImgDetMain'); // replace with your texture path
+var planetTexture = textureLoader.load('https://t4.ftcdn.net/jpg/02/24/14/81/360_F_224148194_xrGaLP6RZbCL7B3vOMYYr2dVrcg95RFt.jpg'); // replace with your texture path
 var planetMaterial = new THREE.MeshBasicMaterial({map: planetTexture});
 var planet = new THREE.Mesh(planetGeometry, planetMaterial);
 planet.position.x = 10;
