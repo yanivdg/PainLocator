@@ -24,7 +24,7 @@ scene.add(sun);
 var sunGeometry = new THREE.SphereGeometry(5, 32, 32);
 var textureLoaderSun = new THREE.TextureLoader();
 // Load the texture
-var sunTexture = textureLoaderSun.load('https://github.com/yanivdg/PainLocator/blob/b7fe7dd8558a68701e32155630e216fc7f3cf7b5/images/124867239-design-material-sun-texture-at-center-of-the-solar-system-universe-not-3d-render%5B1%5D.jpg');
+var sunTexture = textureLoaderSun.load('https://github.com/yanivdg/PainLocator/blob/f45f5d59116c52e225e5a7a08b43fb645d2aa816/images/sun.jpg');
 // Create the material with the texture
 var sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
 // Create the sun
