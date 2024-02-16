@@ -9,10 +9,29 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // Create the sun
+//var sunGeometry = new THREE.SphereGeometry(5, 32, 32);
+//var sunMaterial = new THREE.MeshBasicMaterial({color: 0xFFFF00});
+//var sun = new THREE.Mesh(sunGeometry, sunMaterial);
+//scene.add(sun);
+
+// Create the sun
 var sunGeometry = new THREE.SphereGeometry(5, 32, 32);
 var sunMaterial = new THREE.MeshBasicMaterial({color: 0xFFFF00});
 var sun = new THREE.Mesh(sunGeometry, sunMaterial);
 scene.add(sun);
+
+// Create a texture loader
+var sunGeometry = new THREE.SphereGeometry(5, 32, 32);
+var textureLoaderSun = new THREE.TextureLoader();
+// Load the texture
+var sunTexture = textureLoaderSun.load('https://www.solarsystemscope.com/textures/download/2k_sun.jpg');
+// Create the material with the texture
+var sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
+// Create the sun
+var sun = new THREE.Mesh(sunGeometry, sunMaterial);
+// Add the sun to the scene
+scene.add(sun);
+
 
 // Create the planet
 //var planetGeometry = new THREE.SphereGeometry(1, 32, 32);
@@ -24,8 +43,8 @@ scene.add(sun);
 // Create the planet
 var planetGeometry = new THREE.SphereGeometry(1, 32, 32);
 // Load the texture
-var textureLoader = new THREE.TextureLoader();
-var planetTexture = textureLoader.load('https://t4.ftcdn.net/jpg/02/24/14/81/360_F_224148194_xrGaLP6RZbCL7B3vOMYYr2dVrcg95RFt.jpg'); // replace with your texture path
+var textureLoaderPlanet = new THREE.TextureLoader();
+var planetTexture = textureLoaderPlanet.load('https://t4.ftcdn.net/jpg/02/24/14/81/360_F_224148194_xrGaLP6RZbCL7B3vOMYYr2dVrcg95RFt.jpg'); // replace with your texture path
 var planetMaterial = new THREE.MeshBasicMaterial({map: planetTexture});
 var planet = new THREE.Mesh(planetGeometry, planetMaterial);
 planet.position.x = 10;
