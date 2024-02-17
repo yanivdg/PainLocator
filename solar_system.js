@@ -29,7 +29,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // Create a texture loader
-var sunGeometry = new THREE.SphereGeometry(5, 32, 32);
+var sunGeometry = new THREE.SphereGeometry(8, 32, 32);
 var textureLoaderSun = new THREE.TextureLoader();
 // Load the texture
 var sunTexture = textureLoaderSun.load('./images/sun_texture.jpg');
@@ -41,7 +41,7 @@ var sun = new THREE.Mesh(sunGeometry, sunMaterial);
 scene.add(sun);
 
   // Define Saturn's ring
-var saturnRingGeometry = new THREE.RingGeometry(15.5, 8, 32);
+var saturnRingGeometry = new THREE.RingGeometry(4.5, 8, 32);
 var saturnRingTexture = new THREE.TextureLoader().load('./images/2k_saturn_ring_alpha.png');
 var saturnRingMaterial = new THREE.MeshBasicMaterial({ map: saturnRingTexture, side: THREE.DoubleSide, transparent: true });
 var saturnRing = new THREE.Mesh(saturnRingGeometry, saturnRingMaterial);
@@ -51,12 +51,12 @@ scene.add(saturnRing);
 var planets = [
   { name: 'Mercury', distance: 0.39*10, speed: 4.15, size: 0.350826743, texture: './images/mercury_texture.jpg' },
   { name: 'Venus', distance: 0.72*10, speed: 1.63, size: 0.870165349, texture: './images/venus_texture.jpg' },
-  { name: 'Earth', distance: 1.00*10, speed: 1, size: 0.916031632, texture: './images/earth_texture.jpg' },
-  { name: 'Mars', distance: 1.52*10, speed: 0.53, size: 0.487347232, texture: './images/mars_texture.jpg' },
-  { name: 'Jupiter', distance: 5.2*10, speed: 0.08, size: 10.05176132, texture: './images/jupiter_texture.jpg' },
-  { name: 'Saturn', distance: 9.53*10, speed: 0.03, size: 8.372393961, texture: './images/saturn_texture.jpg' },
-  { name: 'Neptune', distance: 30.07*10, speed: 0.006, size: 3.646585191, texture: './images/neptune_texture.jpg' },
-  { name: 'Uranus', distance: 19.19*10, speed: 0.01, size: 3.540186916, texture: './images/uranus_texture.jpg' }
+  { name: 'Earth', distance: 1.00*10, speed: 1, size: 1, texture: './images/earth_texture.jpg' },
+  { name: 'Mars', distance: 1.52*10, speed: 0.53, size: 0.9, texture: './images/mars_texture.jpg' },
+  { name: 'Jupiter', distance: 5.2*10, speed: 0.08, size: 4, texture: './images/jupiter_texture.jpg' },
+  { name: 'Saturn', distance: 9.53*10, speed: 0.03, size: 3.5, texture: './images/saturn_texture.jpg' },
+  { name: 'Neptune', distance: 30.07*10, speed: 0.006, size: 2.5, texture: './images/neptune_texture.jpg' },
+  { name: 'Uranus', distance: 19.19*10, speed: 0.01, size: 2.4, texture: './images/uranus_texture.jpg' }
 ];
 
 /*
