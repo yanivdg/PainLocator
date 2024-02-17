@@ -12,7 +12,7 @@ document.body.appendChild(renderer.domElement);
 var sunGeometry = new THREE.SphereGeometry(5, 32, 32);
 var textureLoaderSun = new THREE.TextureLoader();
 // Load the texture
-var sunTexture = textureLoaderSun.load('./images/sun.jpg');
+var sunTexture = textureLoaderSun.load('./images/sun_texture.jpg');
 // Create the material with the texture
 var sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
 // Create the sun
@@ -24,7 +24,7 @@ scene.add(sun);
 var planetGeometry = new THREE.SphereGeometry(1, 32, 32);
 // Load the texture
 var textureLoaderPlanet = new THREE.TextureLoader();
-var planetTexture = textureLoaderPlanet.load('https://t4.ftcdn.net/jpg/02/24/14/81/360_F_224148194_xrGaLP6RZbCL7B3vOMYYr2dVrcg95RFt.jpg'); // replace with your texture path
+var planetTexture = textureLoaderPlanet.load('./images/earth_texture.jpg'); // replace with your texture path
 var planetMaterial = new THREE.MeshBasicMaterial({map: planetTexture});
 var planet = new THREE.Mesh(planetGeometry, planetMaterial);
 planet.position.x = 10;
