@@ -2,6 +2,11 @@
 var clock = new THREE.Clock();
 clock.start();
 
+// Adjust the rotation speed based on window width
+var windowWidth = window.innerWidth;
+var baseWindowWidth = 1920; // Base window width for reference
+var rotationSpeedFactor = windowWidth / baseWindowWidth;
+
 // Create the scene and camera
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -59,7 +64,7 @@ for (var i = 0; i < planets.length; i++) {
   var planet = new THREE.Mesh(geometry, material);
   //planet.userData = { speed: planetInfo.speed, distance: planetInfo.distance };
   planet.userData = { 
-    speed: planetInfo.speed, // Adjust the speed of rotation around the sun
+    speed: planetInfo.speed * rotationSpeedFactor, // Adjust the speed of rotation around the sun
     distance: planetInfo.distance, // Adjust the distance from the sun
     initialRotation: Math.random() * Math.PI * 2 // Randomize initial rotation
   };
@@ -98,3 +103,10 @@ var animate = function () {
 };
 
 animate();
+
+// Adjust rotation speed when window is resized
+window.addEventListener('resize', function () {
+  windowWidth = window.innerWidth;
+  rotationSpeedFactor = windowWidth / baseWindowWidth;
+});
+
