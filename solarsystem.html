@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
+<head>
         <title>3D Solar System</title>
         <style>
             body { margin: 0; }
             canvas { width: 100%; height: 100% }
         </style>
-    </head>
-    <body>
+    <!-- Include any necessary libraries or stylesheets -->
+    <!-- ... -->
+</head>
+<body>
+    <!-- Your existing Three.js canvas -->
+    <canvas id="myCanvas"></canvas>
+
+    <!-- A-Frame scene -->
+    <a-scene>
+        <!-- Set the starry space background -->
+        <a-sky color="#000"></a-sky>
+
+        <!-- Your skydiver entity -->
+        <a-entity id="skydiver" geometry="primitive: sphere; radius: 0.5" position="0 100 0" color="blue">
+            <!-- Add any other components or animations specific to your skydiver -->
+        </a-entity>
+
+        <!-- Your parachute entity (initially hidden) -->
+        <a-entity id="parachute" geometry="primitive: cone; radiusBottom: 2; height: 3" position="0 100 0" color="red" visible="false">
+            <!-- Add any parachute-specific components or animations -->
+        </a-entity>
+    </a-scene>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/yanivdg/PainLocator@915206ddde873d369d5248bd36a281e3da9828c3/solar_system.js"></script>
-    </body>
+</body>
 </html>
