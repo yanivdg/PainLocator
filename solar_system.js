@@ -115,10 +115,6 @@ var animate = function () {
               //object.position.z = sun.position.z + object.userData.distance * Math.sin(time * object.userData.speed);
               object.position.x = sun.position.x + object.userData.distance * Math.cos(time * speed);
               object.position.z = sun.position.z + object.userData.distance * Math.sin(time * speed);
-              // Adjust position of the ring relative to Saturn
-              saturnRing.position.x = sun.position.x + planets[planetslist.Saturn].distance * Math.cos(time * object.userData.speed);
-              saturnRing.position.z = sun.position.x + planets[planetslist.Saturn].distance * Math.sin(time * object.userData.speed);
-              saturnRing.rotation.x = Math.PI / 2; // Adjust the rotation if needed
             }
       }
     renderer.render(scene, camera);
