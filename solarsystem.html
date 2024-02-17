@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Simple A-Frame Scene</title>
-    <style>
-        body { margin: 0; }
-        canvas { width: 100%; height: 100% }
-    </style>
-    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@9b8609bd84a292ef97bf1e8589401ae0d3201280/dist/aframe-master.min.js"></script>
-</head>
-<body>
-    <a-scene>
-        <!-- Set the blue sky background -->
-        <a-sky color="#00aaff"></a-sky>
+<a-scene>
+    <!-- Set the blue sky background -->
+    <a-sky color="#00aaff"></a-sky>
 
-        <!-- Add a simple box -->
-        <a-box position="0 1 -5" color="yellow"></a-box>
-    </a-scene>
+    <!-- Your Three.js script (solar system) goes here -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/yanivdg/PainLocator@5114368b33ac0cb63eef38a344b8419227a9c4f7/solar_system.js"></script>
 
-    <!-- Your Three.js script goes here -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/yanivdg/PainLocator@5114368b33ac0cb63eef38a344b8419227a9c4f7/solar_system.js"></script>
-</body>
-</html>
-
+    <!-- Add a simple box -->
+    <a-box position="0 1 -5" color="yellow"></a-box>
+</a-scene>
