@@ -27,9 +27,13 @@
         <a-entity id="parachute" geometry="primitive: cone; radiusBottom: 2; height: 3" position="0 100 0" color="red" visible="false">
             <!-- Add any parachute-specific components or animations -->
         </a-entity>
+        <!-- Create a meteor -->
+            <a-entity class="meteor" position="0 10 -20">
+        <        a-cylinder color="white" height="0.5" radius="0.05"></a-cylinder>
+        <!-- Add animation component to move the meteor -->
+        <a-animation attribute="position" to="0 -10 -20" dur="5000" easing="linear" repeat="indefinite"></a-animation>
+    </a-entity>
     </a-scene>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/yanivdg/PainLocator@5114368b33ac0cb63eef38a344b8419227a9c4f7/solar_system.js"></script>
 </body>
 </html>
