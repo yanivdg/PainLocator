@@ -29,7 +29,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // Create a texture loader
-var sunGeometry = new THREE.SphereGeometry(100, 32, 32);
+var sunGeometry = new THREE.SphereGeometry(5, 32, 32);
 var textureLoaderSun = new THREE.TextureLoader();
 // Load the texture
 var sunTexture = textureLoaderSun.load('./images/sun_texture.jpg');
