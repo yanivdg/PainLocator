@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Solar System in A-Frame</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!-- Set the blue sky background -->
+        <a-sky color="#000000"></a-sky>
+
+        <!-- Create the sun (central point) -->
+        <a-sphere position="0 0 0" radius="8" color="#ffcc00" src="./images/sun_texture.jpg"></a-sphere>
+
+        <!-- Parent entity for the solar system -->
+        <a-entity rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000;">
+            <!-- Individual planets -->
+            <!-- Mars -->
+            <a-sphere position="5 0 0" radius="1" color="red" src="./images/mars_texture.jpg"></a-sphere>
+            <!-- Jupiter -->
+            <a-sphere position="10 0 0" radius="2" color="orange" src="./images/jupiter_texture.jpg"></a-sphere>
+            <!-- Add other planets here -->
+            <!-- Uranus -->
+            <a-sphere position="0 0 -120" radius="2.5" color="#66ccff" src="./images/uranus_texture.jpg" animation="property: rotation; to: 0 360 0; loop: true; dur: 12000;"></a-sphere>
+            <!-- ... (add more planets) ... -->
+        </a-entity>
+    </a-scene>
+</body>
+</html>
