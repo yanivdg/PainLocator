@@ -49,15 +49,14 @@ scene.add(saturnRing);
 
 // Define the planets
 var planets = [
-  { name: 'Mercury', distance: 0.39*10, speed: 4.15, size: 0.055, texture: './images/mercury_texture.jpg' },
-  { name: 'Venus', distance: 0.72*10, speed: 1.63, size: 0.815, texture: './images/venus_texture.jpg' },
-  { name: 'Earth', distance: 1.00*10, speed: 1, size: 1, texture: './images/earth_texture.jpg' },
-  { name: 'Mars', distance: 1.52*10, speed: 0.53, size: 0.011, texture: './images/mars_texture.jpg' },
-  { name: 'Jupiter', distance: 5.2*10, speed: 0.08, size: 1.12, texture: './images/jupiter_texture.jpg' },
-  { name: 'Saturn', distance: 9.53*10, speed: 0.03, size: 0.91, texture: './images/saturn_texture.jpg' },
-  { name: 'Uranus', distance: 19.19*10, speed: 0.01, size: 0.4, texture: './images/uranus_texture.jpg' },
-  { name: 'Neptune', distance: 30.07*10, speed: 0.006, size: 0.39, texture: './images/neptune_texture.jpg' }
-  // Add the rest of the planets...
+  { name: 'Mercury', distance: 0.39*10, speed: 4.15, size: 0.017541337, texture: './images/mercury_texture.jpg' },
+  { name: 'Venus', distance: 0.72*10, speed: 1.63, size: 0.043508267, texture: './images/venus_texture.jpg' },
+  { name: 'Earth', distance: 1.00*10, speed: 1, size: 0.045801582, texture: './images/earth_texture.jpg' },
+  { name: 'Mars', distance: 1.52*10, speed: 0.53, size: 0.024367362, texture: './images/mars_texture.jpg' },
+  { name: 'Jupiter', distance: 5.2*10, speed: 0.08, size: 0.502588066, texture: './images/jupiter_texture.jpg' },
+  { name: 'Saturn', distance: 9.53*10, speed: 0.03, size: 0.418619698, texture: './images/saturn_texture.jpg' },
+  { name: 'Neptune', distance: 30.07*10, speed: 0.006, size: 0.177009346, texture: './images/neptune_texture.jpg' },
+  { name: 'Uranus', distance: 19.19*10, speed: 0.01, size: 0.18232926, texture: './images/uranus_texture.jpg' }
 ];
 
 // Adjust position of the ring relative to Saturn
