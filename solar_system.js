@@ -28,14 +28,13 @@ scene.add(sun);
 var planets = [
   { name: 'Mercury', distance: 0.39*2, speed: 4.15, size: 0.055, texture: './images/mercury_texture.jpg' },
   { name: 'Venus', distance: 0.72*2, speed: 1.63, size: 0.815, texture: './images/venus_texture.jpg' },
-  { name: 'Earth', distance: 1.00*2, speed: 1, size: 1, texture: './images/earth_texture.jpg' }
-  /*
-  { name: 'Mars', distance: 1.52, speed: 0.53, size: 0.011, texture: './images/mars_texture.jpg' },
-  { name: 'Jupiter', distance: 5.2, speed: 0.08, size: 1.12, texture: './images/jupiter_texture.jpg' },
-  { name: 'Saturn', distance: 9.53,speed: 0.03, size: 0.91, texture: './images/saturn_texture.jpg' },
-  { name: 'Uranus', distance: 19.19,speed: 0.01, size: 0.4, texture: './images/uranus_texture.jpg' },
- { name: ' Neptune', distance: 30.07,speed: 0.006, size: 0.39, texture: './images/neptune_texture.jpg' }
- */
+  { name: 'Earth', distance: 1.00*2, speed: 1, size: 1, texture: './images/earth_texture.jpg' },
+  { name: 'Mars', distance: 1.52*2, speed: 0.53, size: 0.011, texture: './images/mars_texture.jpg' },
+  { name: 'Jupiter', distance: 5.2*2, speed: 0.08, size: 1.12, texture: './images/jupiter_texture.jpg' },
+  { name: 'Saturn', distance: 9.53*2, speed: 0.03, size: 0.91, texture: './images/saturn_texture.jpg' },
+  { name: 'Uranus', distance: 19.19*2, speed: 0.01, size: 0.4, texture: './images/uranus_texture.jpg' },
+  { name: 'Neptune', distance: 30.07*2, speed: 0.006, size: 0.39, texture: './images/neptune_texture.jpg' }
+];
 
 
   // Add the rest of the planets...
@@ -60,10 +59,14 @@ for (var i = 0; i < planets.length; i++) {
   var texture = new THREE.TextureLoader().load(planetInfo.texture);
   var material = new THREE.MeshBasicMaterial({ map: texture });
   var planet = new THREE.Mesh(geometry, material);
-  planet.userData = { speed: planetInfo.speed, distance: planetInfo.distance };
+  //planet.userData = { speed: planetInfo.speed, distance: planetInfo.distance };
+  planet.userData = { 
+    speed: planetInfo.speed, // Adjust the speed of rotation around the sun
+    distance: planetInfo.distance, // Adjust the distance from the sun
+    initialRotation: Math.random() * Math.PI * 2 // Randomize initial rotation
+  };
   scene.add(planet);
 }
-
 
 // Animation
 var animate = function () {
@@ -84,8 +87,13 @@ var animate = function () {
             {
               // Increase the elapsed time value to speed up the animation
               var time = clock.getElapsedTime() * 100; // Adjust the factor as needed
-              object.position.x = sun.position.x + object.userData.distance * Math.cos(time * object.userData.speed);
-              object.position.z = sun.position.z + object.userData.distance * Math.sin(time * object.userData.speed);
+              // Adjust the rotation speed around the sun
+              var speed = object.userData.speed;
+              // Update position based on adjusted speed
+              //object.position.x = sun.position.x + object.userData.distance * Math.cos(time * object.userData.speed);
+              //object.position.z = sun.position.z + object.userData.distance * Math.sin(time * object.userData.speed);
+              object.position.x = sun.position.x + object.userData.distance * Math.cos(time * speed);
+              object.position.z = sun.position.z + object.userData.distance * Math.sin(time * speed);
             }
       }
     renderer.render(scene, camera);
