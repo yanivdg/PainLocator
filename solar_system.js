@@ -40,19 +40,6 @@ var sun = new THREE.Mesh(sunGeometry, sunMaterial);
 // Add the sun to the scene
 scene.add(sun);
 
-// Define Saturn's ring
-var saturnRingGeometry = new THREE.RingGeometry(5.5, 8, 32);
-var saturnRingTexture = new THREE.TextureLoader().load('./images/2k_saturn_ring_alpha.png');
-var saturnRingMaterial = new THREE.MeshBasicMaterial({ map: saturnRingTexture, side: THREE.DoubleSide, transparent: true });
-var saturnRing = new THREE.Mesh(saturnRingGeometry, saturnRingMaterial);
-scene.add(saturnRing);
-
-// Adjust position of the ring relative to Saturn
-saturnRing.position.x = planets[planetslist.Saturn].distance * Math.cos(0);
-saturnRing.position.z = planets[planetslist.Saturn].distance * Math.sin(0);
-saturnRing.rotation.x = Math.PI / 2; // Adjust the rotation if needed
-
-
 // Define the planets
 var planets = [
   { name: 'Mercury', distance: 0.39*10, speed: 4.15, size: 0.055, texture: './images/mercury_texture.jpg' },
@@ -63,7 +50,19 @@ var planets = [
   { name: 'Saturn', distance: 9.53*10, speed: 0.03, size: 0.91, texture: './images/saturn_texture.jpg' },
   { name: 'Uranus', distance: 19.19*10, speed: 0.01, size: 0.4, texture: './images/uranus_texture.jpg' },
   { name: 'Neptune', distance: 30.07*10, speed: 0.006, size: 0.39, texture: './images/neptune_texture.jpg' }
-  
+
+
+  // Define Saturn's ring
+var saturnRingGeometry = new THREE.RingGeometry(5.5, 8, 32);
+var saturnRingTexture = new THREE.TextureLoader().load('./images/2k_saturn_ring_alpha.png');
+var saturnRingMaterial = new THREE.MeshBasicMaterial({ map: saturnRingTexture, side: THREE.DoubleSide, transparent: true });
+var saturnRing = new THREE.Mesh(saturnRingGeometry, saturnRingMaterial);
+scene.add(saturnRing);
+
+// Adjust position of the ring relative to Saturn
+saturnRing.position.x = planets[planetslist.Saturn].distance * Math.cos(0);
+saturnRing.position.z = planets[planetslist.Saturn].distance * Math.sin(0);
+saturnRing.rotation.x = Math.PI / 2; // Adjust the rotation if needed
   // Add the rest of the planets...
 ];
 /*
