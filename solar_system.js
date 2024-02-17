@@ -80,8 +80,8 @@ for (var i = 0; i < planets.length; i++) {
   };
    // If the planet is Saturn, add a ring
   if (planetInfo.name === 'Saturn') {
-    var ringGeometry = new THREE.RingGeometry(1.1 * planetInfo.size, 1.5 * planetInfo.size, 32);
-    var ringTexture = new THREE.TextureLoader().load('./images/2k_saturn_ring_alpha.png');
+    var ringGeometry = new THREE.RingGeometry(1.5 * planetInfo.size, 2 * planetInfo.size, 32);
+    var ringTexture = new THREE.TextureLoader().load('./images/jupiter_texture.jpg');
     var ringMaterial = new THREE.MeshBasicMaterial({ map: ringTexture, side: THREE.DoubleSide });
     var ring = new THREE.Mesh(ringGeometry, ringMaterial);
     planet.add(ring);
@@ -107,7 +107,7 @@ var animate = function () {
             if (object instanceof THREE.Mesh && object !== sun) 
             {
               // Increase the elapsed time value to speed up the animation
-              var time = clock.getElapsedTime() * 5; // Adjust the factor as needed
+              var time = clock.getElapsedTime() * 2; // Adjust the factor as needed
               // Adjust the rotation speed around the sun
               var speed = object.userData.speed;
               // Update position based on adjusted speed
