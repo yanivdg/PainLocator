@@ -13,7 +13,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // Create a texture loader
-var sunGeometry = new THREE.SphereGeometry(5, 32, 32);
+var sunGeometry = new THREE.SphereGeometry(2, 32, 32);
 var textureLoaderSun = new THREE.TextureLoader();
 // Load the texture
 var sunTexture = textureLoaderSun.load('./images/sun_texture.jpg');
@@ -26,9 +26,9 @@ scene.add(sun);
 
 // Define the planets
 var planets = [
-  { name: 'Mercury', distance: 0.39, speed: 4.15, size: 0.0055, texture: './images/mercury_texture.jpg' },
-  { name: 'Venus', distance: 0.72, speed: 1.63, size: 0.0815, texture: './images/venus_texture.jpg' },
-  { name: 'Earth', distance: 1.00, speed: 1, size: 0.1, texture: './images/earth_texture.jpg' }
+  { name: 'Mercury', distance: 0.39*20, speed: 4.15, size: 0.0055, texture: './images/mercury_texture.jpg' },
+  { name: 'Venus', distance: 0.72*20, speed: 1.63, size: 0.0815, texture: './images/venus_texture.jpg' },
+  { name: 'Earth', distance: 1.00*20, speed: 1, size: 0.1, texture: './images/earth_texture.jpg' }
   /*
   { name: 'Mars', distance: 1.52, speed: 0.53, size: 0.011, texture: './images/mars_texture.jpg' },
   { name: 'Jupiter', distance: 5.2, speed: 0.08, size: 1.12, texture: './images/jupiter_texture.jpg' },
