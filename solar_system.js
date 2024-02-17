@@ -81,7 +81,7 @@ for (var i = 0; i < planets.length; i++) {
    // If the planet is Saturn, add a ring
   if (planetInfo.name === 'Saturn') {
     var ringGeometry = new THREE.RingGeometry(1.5 * planetInfo.size, 2 * planetInfo.size, 32);
-    var ringTexture = new THREE.TextureLoader().load('./images/jupiter_texture.jpg');
+    var ringTexture = new THREE.TextureLoader().load('./images/saturn_ring.jpg');
     var ringMaterial = new THREE.MeshBasicMaterial({ map: ringTexture, side: THREE.DoubleSide });
     var ring = new THREE.Mesh(ringGeometry, ringMaterial);
     planet.add(ring);
