@@ -30,10 +30,10 @@ var planets = [
   { name: 'Venus', distance: 0.72, speed: 3.50, period: 224.70, size: 0.815, texture: './images/venus_texture.jpg' },
   { name: 'Earth', distance: 1.00, speed: 2.98, period: 365.25, size: 1.00, texture: './images/earth_texture.jpg' },
   { name: 'Mars', distance: 1.52, speed: 2.41, period: 686.98, size: 0.107, texture: './images/mars_texture.jpg' },
-  { name: 'Jupiter', distance: 5.2, speed: 13.07, period:4332.59, size: 11.22', texture: './images/jupiter_texture.jpg' },
-  { name: 'Saturn','distance: 9.53,speed: 9.69, period:10759.22, size: 9.14', texture: './images/saturn_texture.jpg' },
-  { name: 'Uranus',distance: 19.19,speed: 6.81, period:30687.15, size: 3.98', texture: './images/uranus_texture.jpg' },
- { name: ' Neptune',distance: 30.07,speed: 5.43, period:60182, size: 3.88', texture: './images/neptune_texture.jpg' }
+  { name: 'Jupiter', distance: 5.2, speed: 13.07, period:4332.59, size: 11.22, texture: './images/jupiter_texture.jpg' },
+  { name: 'Saturn','distance: 9.53,speed: 9.69, period:10759.22, size: 9.14, texture: './images/saturn_texture.jpg' },
+  { name: 'Uranus',distance: 19.19,speed: 6.81, period:30687.15, size: 3.98, texture: './images/uranus_texture.jpg' },
+ { name: ' Neptune',distance: 30.07,speed: 5.43, period:60182, size: 3.88, texture: './images/neptune_texture.jpg' }
 
 
   // Add the rest of the planets...
