@@ -1,40 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>3D Solar System</title>
-        <style>
-            body { margin: 0; }
-            canvas { width: 100%; height: 100% }
-        </style>
-    <!-- Include any necessary libraries or stylesheets -->
+    <title>Simple A-Frame Scene</title>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
     <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@9b8609bd84a292ef97bf1e8589401ae0d3201280/dist/aframe-master.min.js"></script>
 </head>
 <body>
-    <!-- Your existing Three.js canvas -->
-    <canvas id="myCanvas"></canvas>
-
-    <!-- A-Frame scene -->
     <a-scene>
-        <!-- Set the starry space background -->
-        <a-sky color="#000"></a-sky>
+        <!-- Set the blue sky background -->
+        <a-sky color="#00aaff"></a-sky>
 
-        <!-- Your skydiver entity -->
-        <a-entity id="skydiver" geometry="primitive: sphere; radius: 0.5" position="0 100 0" color="blue">
-            <!-- Add any other components or animations specific to your skydiver -->
-        </a-entity>
-
-        <!-- Your parachute entity (initially hidden) -->
-        <a-entity id="parachute" geometry="primitive: cone; radiusBottom: 2; height: 3" position="0 100 0" color="red" visible="false">
-            <!-- Add any parachute-specific components or animations -->
-        </a-entity>
-        <!-- Create a meteor -->
-            <a-entity class="meteor" position="0 10 -20">
-        <        a-cylinder color="white" height="0.5" radius="0.05"></a-cylinder>
-        <!-- Add animation component to move the meteor -->
-        <a-animation attribute="position" to="0 -10 -20" dur="5000" easing="linear" repeat="indefinite"></a-animation>
-    </a-entity>
+        <!-- Add a simple box -->
+        <a-box position="0 1 -5" color="yellow"></a-box>
     </a-scene>
+
+    <!-- Your Three.js script goes here -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/yanivdg/PainLocator@5114368b33ac0cb63eef38a344b8419227a9c4f7/solar_system.js"></script>
 </body>
 </html>
+
