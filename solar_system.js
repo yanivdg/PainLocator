@@ -1,3 +1,14 @@
+const planetslist = 
+{
+  Mercury:0,
+  Venus:1,
+  Earth:2,
+  Mars:3,
+  Jupiter:4,
+  Saturn:5,
+  Uranus:6,
+  Neptune:7
+};
 // Create a clock
 var clock = new THREE.Clock();
 clock.start();
@@ -28,6 +39,19 @@ var sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
 var sun = new THREE.Mesh(sunGeometry, sunMaterial);
 // Add the sun to the scene
 scene.add(sun);
+
+// Define Saturn's ring
+var saturnRingGeometry = new THREE.RingGeometry(5.5, 8, 32);
+var saturnRingTexture = new THREE.TextureLoader().load('./images/2k_saturn_ring_alpha.png');
+var saturnRingMaterial = new THREE.MeshBasicMaterial({ map: saturnRingTexture, side: THREE.DoubleSide, transparent: true });
+var saturnRing = new THREE.Mesh(saturnRingGeometry, saturnRingMaterial);
+scene.add(saturnRing);
+
+// Adjust position of the ring relative to Saturn
+saturnRing.position.x = planets[planetslist.Saturn].distance * Math.cos(0);
+saturnRing.position.z = planets[planetslist.Saturn].distance * Math.sin(0);
+saturnRing.rotation.x = Math.PI / 2; // Adjust the rotation if needed
+
 
 // Define the planets
 var planets = [
