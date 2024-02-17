@@ -29,7 +29,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // Create a texture loader
-var sunGeometry = new THREE.SphereGeometry(2, 32, 32);
+var sunGeometry = new THREE.SphereGeometry(100, 32, 32);
 var textureLoaderSun = new THREE.TextureLoader();
 // Load the texture
 var sunTexture = textureLoaderSun.load('./images/sun_texture.jpg');
@@ -41,7 +41,7 @@ var sun = new THREE.Mesh(sunGeometry, sunMaterial);
 scene.add(sun);
 
   // Define Saturn's ring
-var saturnRingGeometry = new THREE.RingGeometry(5.5, 8, 32);
+var saturnRingGeometry = new THREE.RingGeometry(15.5, 8, 32);
 var saturnRingTexture = new THREE.TextureLoader().load('./images/2k_saturn_ring_alpha.png');
 var saturnRingMaterial = new THREE.MeshBasicMaterial({ map: saturnRingTexture, side: THREE.DoubleSide, transparent: true });
 var saturnRing = new THREE.Mesh(saturnRingGeometry, saturnRingMaterial);
@@ -49,20 +49,16 @@ scene.add(saturnRing);
 
 // Define the planets
 var planets = [
-  { name: 'Mercury', distance: 0.39*10, speed: 4.15, size: 0.017541337, texture: './images/mercury_texture.jpg' },
-  { name: 'Venus', distance: 0.72*10, speed: 1.63, size: 0.043508267, texture: './images/venus_texture.jpg' },
-  { name: 'Earth', distance: 1.00*10, speed: 1, size: 0.045801582, texture: './images/earth_texture.jpg' },
-  { name: 'Mars', distance: 1.52*10, speed: 0.53, size: 0.024367362, texture: './images/mars_texture.jpg' },
-  { name: 'Jupiter', distance: 5.2*10, speed: 0.08, size: 0.502588066, texture: './images/jupiter_texture.jpg' },
-  { name: 'Saturn', distance: 9.53*10, speed: 0.03, size: 0.418619698, texture: './images/saturn_texture.jpg' },
-  { name: 'Neptune', distance: 30.07*10, speed: 0.006, size: 0.177009346, texture: './images/neptune_texture.jpg' },
-  { name: 'Uranus', distance: 19.19*10, speed: 0.01, size: 0.18232926, texture: './images/uranus_texture.jpg' }
+  { name: 'Mercury', distance: 0.39*10, speed: 4.15, size: 0.350826743, texture: './images/mercury_texture.jpg' },
+  { name: 'Venus', distance: 0.72*10, speed: 1.63, size: 0.870165349, texture: './images/venus_texture.jpg' },
+  { name: 'Earth', distance: 1.00*10, speed: 1, size: 0.916031632, texture: './images/earth_texture.jpg' },
+  { name: 'Mars', distance: 1.52*10, speed: 0.53, size: 0.487347232, texture: './images/mars_texture.jpg' },
+  { name: 'Jupiter', distance: 5.2*10, speed: 0.08, size: 10.05176132, texture: './images/jupiter_texture.jpg' },
+  { name: 'Saturn', distance: 9.53*10, speed: 0.03, size: 8.372393961, texture: './images/saturn_texture.jpg' },
+  { name: 'Neptune', distance: 30.07*10, speed: 0.006, size: 3.646585191, texture: './images/neptune_texture.jpg' },
+  { name: 'Uranus', distance: 19.19*10, speed: 0.01, size: 3.540186916, texture: './images/uranus_texture.jpg' }
 ];
 
-// Adjust position of the ring relative to Saturn
-saturnRing.position.x = planets[planetslist.Saturn].distance * Math.cos(0);
-saturnRing.position.z = planets[planetslist.Saturn].distance * Math.sin(0);
-saturnRing.rotation.x = Math.PI / 2; // Adjust the rotation if needed
 /*
 // Create the planet
 var planetGeometry = new THREE.SphereGeometry(1, 32, 32);
@@ -118,6 +114,10 @@ var animate = function () {
               //object.position.z = sun.position.z + object.userData.distance * Math.sin(time * object.userData.speed);
               object.position.x = sun.position.x + object.userData.distance * Math.cos(time * speed);
               object.position.z = sun.position.z + object.userData.distance * Math.sin(time * speed);
+              // Adjust position of the ring relative to Saturn
+              saturnRing.position.x = sun.position.x + planets[planetslist.Saturn].distance * Math.cos(time * object.userData.speed);
+              saturnRing.position.z = sun.position.x + planets[planetslist.Saturn].distance * Math.sin(time * object.userData.speed);
+              saturnRing.rotation.x = Math.PI / 2; // Adjust the rotation if needed
             }
       }
     renderer.render(scene, camera);
