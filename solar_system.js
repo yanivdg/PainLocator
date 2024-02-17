@@ -89,7 +89,7 @@ var animate = function () {
             if (object instanceof THREE.Mesh && object !== sun) 
             {
               // Increase the elapsed time value to speed up the animation
-              var time = clock.getElapsedTime() * 100; // Adjust the factor as needed
+              var time = clock.getElapsedTime() * 300; // Adjust the factor as needed
               // Adjust the rotation speed around the sun
               var speed = object.userData.speed;
               // Update position based on adjusted speed
