@@ -17,7 +17,6 @@ var sunTexture = textureLoaderSun.load('./images/sun.jpg');
 var sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
 // Create the sun
 var sun = new THREE.Mesh(sunGeometry, sunMaterial);
-sun.rotation.y += 0.01;
 // Add the sun to the scene
 scene.add(sun);
 
@@ -35,7 +34,8 @@ scene.add(planet);
 // Animation
 var animate = function () {
     requestAnimationFrame(animate);
-
+    // Rotate the sun
+    sun.rotation.y += 0.01;
     // Rotate the planet around the sun
     planet.position.x = 10 * Math.cos(Date.now() / 2000);
     planet.position.z = 10 * Math.sin(Date.now() / 2000);
