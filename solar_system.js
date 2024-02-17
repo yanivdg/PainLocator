@@ -40,13 +40,6 @@ var sun = new THREE.Mesh(sunGeometry, sunMaterial);
 // Add the sun to the scene
 scene.add(sun);
 
-  // Define Saturn's ring
-var saturnRingGeometry = new THREE.RingGeometry(4.5, 8, 32);
-var saturnRingTexture = new THREE.TextureLoader().load('./images/2k_saturn_ring_alpha.png');
-var saturnRingMaterial = new THREE.MeshBasicMaterial({ map: saturnRingTexture, side: THREE.DoubleSide, transparent: true });
-var saturnRing = new THREE.Mesh(saturnRingGeometry, saturnRingMaterial);
-scene.add(saturnRing);
-
 // Define the planets
 var planets = [
   { name: 'Mercury', distance: 0.39*10, speed: 4.15, size: 0.350826743, texture: './images/mercury_texture.jpg' },
@@ -85,6 +78,14 @@ for (var i = 0; i < planets.length; i++) {
     distance: planetInfo.distance, // Adjust the distance from the sun
     initialRotation: Math.random() * Math.PI * 2 // Randomize initial rotation
   };
+   // If the planet is Saturn, add a ring
+  if (planetInfo.name === 'Saturn') {
+    var ringGeometry = new THREE.RingGeometry(1.1 * planetInfo.size, 1.5 * planetInfo.size, 32);
+    var ringTexture = new THREE.TextureLoader().load('./images/2k_saturn_ring_alpha.png');
+    var ringMaterial = new THREE.MeshBasicMaterial({ map: ringTexture, side: THREE.DoubleSide });
+    var ring = new THREE.Mesh(ringGeometry, ringMaterial);
+    planet.add(ring);
+  }
   scene.add(planet);
 }
 
