@@ -34,9 +34,7 @@ var planets = [
   { name: 'Saturn', distance: 9.53*2, speed: 0.03, size: 0.91, texture: './images/saturn_texture.jpg' },
   { name: 'Uranus', distance: 19.19*2, speed: 0.01, size: 0.4, texture: './images/uranus_texture.jpg' },
   { name: 'Neptune', distance: 30.07*2, speed: 0.006, size: 0.39, texture: './images/neptune_texture.jpg' }
-];
-
-
+  
   // Add the rest of the planets...
 ];
 /*
